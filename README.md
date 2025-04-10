@@ -3,12 +3,12 @@
 
              
                 func InitRdb() {
-                global.Rdb = redis.NewClient(&redis.Options{
+                rdb = redis.NewClient(&redis.Options{
                 Addr:     "",
                 Password: "", // no password set
                 DB:       0,   // use default DB
                 })
-                    pong, err := global.Rdb.Ping().Result()
+                _, err := rdb.Ping(context.Background()).Result()
                     if err != nil {
                         panic(err)
                     }
