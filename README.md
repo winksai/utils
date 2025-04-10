@@ -1,7 +1,7 @@
 # utils
 在git里拉取代码 go get github.com/winksai/utils/utils
 
-             初始化Redis
+             
                 func InitRdb() {
                 config := global.NaCos.Redis
                 global.Rdb = redis.NewClient(&redis.Options{
@@ -15,7 +15,7 @@
                     }
                     log.Println("Redis connect successful!!")
                 }
-            初始化mysql
+            
                 func InitDB() {
                 var err error
                 Conf := global.NaCos.Mysql
@@ -37,7 +37,7 @@
                     }
                     fmt.Println("mysql连接成功")
                 }
-              viper配置读取
+              
                     func InitConfig() {
                     viper.SetConfigFile("../common/config/dev.yaml")
                     err := viper.ReadInConfig()
@@ -47,7 +47,7 @@
                     viper.Unmarshal(&global.ConfigData)
                     fmt.Println("配置参数", global.ConfigData)
                     }
-               zap初始化
+               
                 func InitZap() {
                 // 创建日志目录，确保日志目录存在
                 // 使用 os.MkdirAll 来创建目录，0777 表示最大权限
