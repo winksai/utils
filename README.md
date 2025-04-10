@@ -1,7 +1,7 @@
 # utils
 在git里拉取代码 go get github.com/winksai/utils/utils
 
-###### redis mysql zap 的初始化
+_###### redis mysql zap 的初始化_
              
                 func InitRdb() {
                 rdb = redis.NewClient(&redis.Options{
