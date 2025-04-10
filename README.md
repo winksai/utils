@@ -57,8 +57,13 @@
                 config := zap.NewDevelopmentConfig() // 创建开发模式的 Zap 配置（默认日志级别为 debug）
                 
                 // 修改输出路径，将日志输出到 "../log/dev.log"
+
                 config.OutputPaths = []string{
-                    "../log/dev.log", // 设置日志文件路径
+                "../log/dev.log", // 只输出到文件
+                "stdout",          // 输出到控制台
+                }
+                config.ErrorOutputPaths = []string{
+                "../log/error.log", // 错误日志也输出到指定文件
                 }
             
                 // 构建并返回一个 Zap logger 实例
