@@ -13,7 +13,6 @@
                     if err != nil {
                         panic(err)
                     }
-                    log.Println("Redis connect successful!!")
                 }
             
                 func InitDB() {
@@ -35,35 +34,33 @@
                     if err != nil {
                         panic(err)
                     }
-                    fmt.Println("mysql连接成功")
                 }
               
                     func InitConfig() {
-                    viper.SetConfigFile("../common/config/dev.yaml")
+                    viper.SetConfigFile("")
                     err := viper.ReadInConfig()
                     if err != nil {
                     panic(err)
                     }
-                    viper.Unmarshal(&global.ConfigData)
-                    fmt.Println("配置参数", global.ConfigData)
+                    viper.Unmarshal()
                     }
                
                 func InitZap() {
                 // 创建日志目录，确保日志目录存在
                 // 使用 os.MkdirAll 来创建目录，0777 表示最大权限
-                os.MkdirAll("../log", 0777)
+                os.MkdirAll("指定目录", 0777)
 
                 // 配置 Zap 日志库
                 config := zap.NewDevelopmentConfig() // 创建开发模式的 Zap 配置（默认日志级别为 debug）
                 
-                // 修改输出路径，将日志输出到 "../log/dev.log"
+                // 修改输出路径，将日志输出到指定文件
 
                 config.OutputPaths = []string{
-                "../log/dev.log", // 只输出到文件
+                "", // 只输出到文件
                 "stdout",          // 输出到控制台
                 }
                 config.ErrorOutputPaths = []string{
-                "../log/error.log", // 错误日志也输出到指定文件
+                "", // 错误日志也输出到指定文件
                 }
             
                 // 构建并返回一个 Zap logger 实例
