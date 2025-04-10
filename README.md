@@ -3,11 +3,10 @@
 
              
                 func InitRdb() {
-                config := global.NaCos.Redis
                 global.Rdb = redis.NewClient(&redis.Options{
-                Addr:     config.Addr,
-                Password: config.Pass, // no password set
-                DB:       config.Db,   // use default DB
+                Addr:     "",
+                Password: "", // no password set
+                DB:       0,   // use default DB
                 })
                     pong, err := global.Rdb.Ping().Result()
                     if err != nil {
@@ -16,14 +15,12 @@
                 }
             
                 func InitDB() {
-                var err error
-                Conf := global.NaCos.Mysql
-                dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local", Conf.User, Conf.Pass, Conf.Host, Conf.Port, Conf.Database)
-                global.DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{
+                dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local")
+                db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
                 Logger: logger.Default.LogMode(logger.Info),
                 })
                 
-                    sqlDB, err := global.DB.DB()
+                    sqlDB, err := db.DB()
                     // SetMaxIdleConns sets the maximum number of connections in the idle connection pool.
                     sqlDB.SetMaxIdleConns(10)
                     // SetMaxOpenConns sets the maximum number of open connections to the database.
