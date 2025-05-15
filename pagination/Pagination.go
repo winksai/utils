@@ -1,4 +1,4 @@
-package main
+package pagination
 
 // Pagination 增强版分页结构体
 type Pagination struct {
